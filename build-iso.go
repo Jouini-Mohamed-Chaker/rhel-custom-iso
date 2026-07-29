@@ -5,6 +5,7 @@ import (
 	"log"
 	"os"
 	"os/exec"
+	"path/filepath"
 )
 
 func main() {
@@ -13,8 +14,15 @@ func main() {
         printUsage()
     }
 
-    sourceISO := args[0]
-    ksFile := args[1]
+    sourceISO, err := filepath.Abs(args[0])
+    if err != nil {
+        log.Fatalf("Invalid source ISO path: %v", err)
+    }
+
+    ksFile, err :=  filepath.Abs(args[1])
+    if err != nil {
+        log.Fatalf("Invalid kickstart file path: %v", err)
+    }
     outputISO := "custom.iso"
     if len(args) >= 3 {
         outputISO = args[2]
