@@ -60,7 +60,7 @@ func main() {
 
     // ---------- Step 4: build the ISO ----------
     log.Println("Building automated ISO (this may take some time)...")
-    run("mkksiso", "--ks", ksFile, sourceISO, outputISO)
+    run("sudo", "mkksiso", "--ks", ksFile, sourceISO, outputISO)
 
     // ---------- Step 5: confirm output ----------
     if fileExists(outputISO) {
